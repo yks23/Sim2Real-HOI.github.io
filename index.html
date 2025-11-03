@@ -11,133 +11,90 @@
   <meta name="keywords"
     content="PartRM, 3D reconstruction, Drag" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <title>
-    PartRM | Project Page
-  </title>
-  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico" />
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet" />
-
-  <link rel="stylesheet" href="static/css/bulma.min.css" />
-  <link rel="stylesheet" href="static/css/bulma-carousel.min.css" />
-  <link rel="stylesheet" href="static/css/bulma-slider.min.css" />
-  <link rel="stylesheet" href="static/css/fontawesome.all.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" />
-  <link rel="stylesheet" href="static/css/index.css" />
-  <link rel="stylesheet" href="https://unpkg.com/beerslider/dist/BeerSlider.css">
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
-  <script defer src="static/js/fontawesome.all.min.js"></script>
-  <script src="static/js/bulma-carousel.min.js"></script>
-  <script src="static/js/bulma-slider.min.js"></script>
-  <script src="static/js/index.js"></script>
-</head>
-
 <style>
-  .carousel-container {
-    position: relative;
-    width: 80%;
-    max-width: 600px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .prev {
-      left: 0;
-  }
-
-  .next {
-      right: 0;
-  }
-  .video-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    margin-bottom: 75px; 
-  }
-  /* 修改后的画廊样式 */
-  .gallery {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center; /* 水平居中 */
-      gap: 20px;
-      padding: 20px;
-      align-items: center;
-      text-align: center;
-  }
-
-  .gallery .column {
-      flex: 0 1 auto; /* 允许弹性收缩 */
-      max-width: 600px; /* 控制最大宽度 */
-      width: 100%;
-      display: flex;
-      justify-content: center; /* 水平居中 */
-      align-items: center; /* 垂直居中 */
-  }
-
-  .gallery img {
-      width: 80%;
-      max-width: 80%; /* 确保图片不超过容器宽度 */
-      height: auto;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-  }
-
   /* Lightbox样式 */
-  #lightbox {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      justify-content: center;
-      align-items: center;
-      z-index: 9999; /* 确保lightbox在顶部 */
-  }
-
   #lightbox img {
       width: 80%;
       max-width: 800px;
       object-fit: contain;
   }
 
-  .buttons {
-      position: absolute;
-      top: 50%;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      transform: translateY(-50%);
+  /* 这是一个宽泛、安全的居中策略；如需更细粒度可调整选择器 */
+  .hero,
+  .hero .container,
+  .container,
+  .columns,
+  .column,
+  .content,
+  .publication-links,
+  .gallery,
+  h1,
+  h2,
+  h3,
+  p,
+  table caption {
+    text-align: center;
   }
 
-  .buttons button {
-      background-color: rgba(0, 0, 0, 0.5);
-      color: white;
-      border: none;
-      padding: 10px;
-      cursor: pointer;
-      border-radius: 50%;
-      font-size: 20px;
+  /* gallery 行与图片居中 */
+  .gallery .row {
+    text-align: center;
   }
 
-  .buttons button:hover {
-      background-color: rgba(0, 0, 0, 0.8);
+  /* 使图片、视频块以块级元素并居中（避免 inline 造成的偏移） */
+  .gallery img,
+  .gallery .row img,
+  .video-container img,
+  .video-container video,
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+    height: auto;
   }
 
-  /* 关闭按钮 */
-  #lightbox span {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      color: white;
-      font-size: 30px;
-      cursor: pointer;
-      font-weight: bold;
+  /* 表格居中并让单元格文本居中 */
+  table {
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+  }
+  table th,
+  table td {
+    text-align: center;
+    padding: 6px 8px;
+  }
+
+  /* 4x4 视频网格样式 */
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 12px;
+  }
+  .video-grid video {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 6px;
+    background: #000;
+  }
+
+  /* 响应式：窄屏时降列数 */
+  @media (max-width: 900px) {
+    .video-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 480px) {
+    .video-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
 </style>
@@ -149,10 +106,10 @@
         <div class="columns is-centered">
           <div class="column has-text-centered">
             <h2 class="title is-2 publication-title">
-              PartRM: Modeling Part-Level Dynamics with Large Cross-State Reconstruction Model
+              Sim2Real-HOI: Sim-to-Real HOI Video Generation via Decoupled Motion-Appearance Diffusion
             </h2>
             <h3 class="subtitle is-4 publication-subtitle" style="color: red; line-height: 1.5;">
-              <strong style="color: red;">Accepted to CVPR 2025</strong>
+              <!-- <strong style="color: red;">Accepted to CVPR 2025</strong> -->
             </h3>
             <div class="is-size-5 publication-authors">
               <!-- Paper authors -->
@@ -256,40 +213,43 @@
     </div>
   </section>
 
-  <!-- Teaser video-->
+  <!-- Top: 4 videos side-by-side (replaces previous teaser). Using local file:// paths as requested -->
   <section class="hero teaser">
     <div class="container is-max-desktop">
       <div class="hero-body">
-        <!-- <video poster="" id="tree" autoplay controls muted loop height="100%"> -->
-        <!-- Your video here -->
-        <!-- <source src="static/videos/banner_video.mp4" type="video/mp4" /> -->
-        <!-- </video> -->
-        <!-- centering the image -->
-        <div class="video-container">
-          <video poster="" id="tree" autoplay controls muted loop width="70%" height="auto">
-            <source src="static/partrm_res/videos/highres_drag.mp4" type="video/mp4" />
+        <div class="video-grid" style="grid-template-columns: repeat(4, 1fr); max-width:1200px;">
+          <video controls muted loop autoplay playsinline>
+            <source src="static/sim2real_res/oad/1.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <video controls muted loop autoplay playsinline>
+            <source src="static/sim2real_res/downloads/d2.mp4" type="video/mp4">
+          </video>
+          <video controls muted loop autoplay playsinline>
+            <source src="static/sim2real_res/downloads/d16.mp4" type="video/mp4">
+          </video>
+          <video controls muted loop autoplay playsinline>
+            <source src="static/sim2real_res/oad/2.mp4" type="video/mp4">
+          </video>
         </div>
-        <!-- <img src="static/images/Teaser_cs1.jpg" width="100%" /> -->
-        <h2 class="has-text-centered is-size-6">
-          <b></b>
-        </h2>
       </div>
     </div>
   </section>
-  <!-- End teaser video -->
+  <!-- End Top videos -->
 
   <!-- Paper abstract -->
-  <section class="hero is-small" style="margin-top: -80px;">
+  <section class="hero is-small" style="margin-top: 20px;">
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
             <p>
-              As interest grows in world models that predict future states from current observations and actions, accurately modeling part-level dynamics has become increasingly relevant for various applications. Existing approaches, such as Puppet-Master, rely on fine-tuning large-scale pre-trained video diffusion models, which are impractical for real-world use due to the limitations of 2D video representation and slow processing times. To overcome these challenges, we present PartRM, a novel 4D reconstruction framework that simultaneously models appearance, geometry, and part-level motion from multi-view images of a static object. PartRM builds upon large 3D Gaussian reconstruction models, leveraging their extensive knowledge of appearance and geometry in static objects. To address data scarcity in 4D, we introduce the PartDrag-4D dataset, providing multi-view observations of part-level dynamics across over 20,000 states. We enhance the model’s understanding of interaction conditions with a multi-scale drag embedding module that captures dynamics at varying granularities. 
-              To prevent catastrophic forgetting during fine-tuning, we implement a two-stage training process that focuses sequentially on motion and appearance learning. 
-              Experimental results show that PartRM establishes a new state-of-the-art in part-level motion learning and can be applied in manipulation tasks in robotics. 
-              Our code, data, and models are publicly available to facilitate future research.
+              We present Sim2Real-HOI, a zero-shot framework that closes the sim-to-real gap for hand–object interaction (HOI) video generation using the initial and target poses of both hand and object. 
+Controllable diffusion models like InterDyn and ManiVideo stumble at scale when moving simulation to reality: the quality of generated videos are suboptimal, and they rely on simulator-unobtainable cues such as the first frame.
+Sim2Real-HOI addresses the problem in two stages: (1) an appearance generator that models both appearance and background using a controllable image diffusion model, and (2) a motion transfer model that transfers motion, generated by a pretrained hand pose generator, to real-world video through a controllable video diffusion model.
+To improve performance, we incorporate multiple types of conditions that ensure the generated output aligns with the geometry, semantics, and fine details of the hand pose. 
+Extensive experiments on DexYCB and OAKINK2 demonstrate that Sim2Real-HOI enhances the generated quality compared to the best prior work and results in a lower error rate when the generated videos are used to train downstream hand-pose estimators. The code and pre-trained weights will be made publicly available.
             </p>
           </div>
         </div>
@@ -303,19 +263,13 @@
     <div class="hero-body">
       <div class="container">
         <!-- Paper video. -->
-        <h2 class="title is-3">Method</h2>
-        <div class="columns is-centered">
-          <img src="static/partrm_res/images/main_graph.jpg" width="75%" />
+  <div class="columns is-centered">
+  <h2 class="title is-3 has-text-centered">Method</h2>
+
+          <img src="static/sim2real_res/new_main.png" width="90%" />
         </div>
         <h2 class="has-text-centered is-size-6" width="55%">
-          <b>Overview of PartRM.</b> We first leverage a fine-tuned Zero123++ to generate multi-view images, 
-          followed by our designed drag propagation module to distribute drags on the moving parts. 
-          The drags and multi-view images are then fed into our designed network, 
-          where the drags are embedded using our multi-scale embedding module and subsequently concatenate 
-          to the UNet down blocks. We adopt a two-stage training approach: in the first stage, 
-          the network learns part motion using ground truth deformed 3D Gaussians as supervision, 
-          which are stored in the Gaussian database constructed by LGM. In the second stage, the network learns appearance, 
-          with ground truth deformed multi-view renderings serving as supervision.
+          <b>Overview of Sim2Real-HOI two-stage generation pipeline.</b> (1) <b>Appearance Generation:</b> A controllable image diffusion model synthesizes the first frame from multi-modal conditions (depth, semantic masks, keypoints). (2) <b>Motion Generation:</b> A pre-trained hand pose generator produces intermediate poses, which are then rendered into a full video sequence by a video diffusion model, conditioned on the same controls as appearance generation.
         </h2>
         <br />
         <!-- <div class="columns is-centered">
@@ -339,129 +293,77 @@
     <div class="hero-body">
       <div class="container">
         <!-- Paper video. -->
-        <h2 class="title is-3">Results</h2>
-        <div class="columns is-centered has-text-centered"
-          style="width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column">
-
-          <video poster="" id="tree" autoplay controls muted loop width="60%" height="auto">
-            <source src="static/partrm_res/videos/teaser.mp4" type="video/mp4" />
-          </video>
-        </div>
+  <h2 class="title is-3 has-text-centered">Results</h2>
+        
 
         <div class="gallery">
           <div class="row">
-               <img src="static/partrm_res/images/supp_part1.jpg" alt="Image 1" onclick="openLightbox(this)" width="50%" height="auto">
+               <img src="static/sim2real_res/head.png" alt="Image 1" onclick="openLightbox(this)" width="50%" height="auto">
           </div>
-          <div class="row">
-              <img src="static/partrm_res/images/supp_pm1.jpg" alt="Image 4" onclick="openLightbox(this)" width="50%" height="auto">
+          <h2 class="has-text-centered is-size-6">
+         (a) <b>Overview</b> of proposed Sim2Real-HOI. Given the initial and desired final poses of both the hand and object, along with the object mesh, Sim2Real-HOI generates photo-realistic in-the-wild videos by decoupling motion and appearance through a diffusion-based generative process, thereby closing the sim-to-real gap without paired real-world supervision. (b) <b>Evaluation on video quality and downstream task.</b> Our experiments reveal that Sim2Real-HOI not only generates videos with superior perceptual quality, as evidenced by a lower Fréchet Video Distance (FVD) against baselines, but also that these videos serve as effective synthetic data. Incorporating them into training reduces the error of a downstream hand pose estimator, outperforming the model trained solely on real videos.
+        </h2>
+          <!-- <div class="row"> -->
+              <!-- <img src="static/partrm_res/images/supp_pm1.jpg" alt="Image 4" onclick="openLightbox(this)" width="50%" height="auto"> -->
           </div>
         </div>
 
-        <h2 class="has-text-centered is-size-6">
-          <b>Generation Results: </b>
-          Given a single-view image of an articulated object and user-defined drag operations specifying the starting point 
-          and target endpoint of movable joints as input, our method generates a 3D Gaussian Splatting representation of 
-          the object's terminal state after movement.
-        </h2>
+        <!-- Generated videos 4x4 grid -->
+        <h2 class="title is-4 has-text-centered" style="margin-top: 1.5em;">Generated Videos</h2>
+        <div class="video-grid">
+          <!-- d1.mp4 through d16.mp4 -->
+          <video controls muted loop autoplay playsinline>
+            <source src="static/sim2real_res/downloads/d1.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <video controls muted loop autoplay playsinline>
+            <source src="static/sim2real_res/downloads/d22.mp4" type="video/mp4">
+          </video>
+          <video controls muted loop autoplay playsinline>
+            <source src="static/sim2real_res/downloads/d3.mp4" type="video/mp4">
+          </video>
+          <video controls muted loop autoplay playsinline>
+            <source src="static/sim2real_res/downloads/d4.mp4" type="video/mp4">
+          </video>
+          <video controls muted loop autoplay playsinline>
+            <source src="static/sim2real_res/downloads/d5.mp4" type="video/mp4">
+          </video>
+          <video controls muted loop autoplay playsinline>
+            <source src="static/sim2real_res/downloads/d6.mp4" type="video/mp4">
+          </video>
+          <video controls muted loop autoplay playsinline>
+            <source src="static/sim2real_res/downloads/d7.mp4" type="video/mp4">
+          </video>
+          <video controls muted loop autoplay playsinline>
+            <source src="static/sim2real_res/downloads/d8.mp4" type="video/mp4">
+          </video>
+          <video controls muted loop autoplay playsinline>
+            <source src="static/sim2real_res/downloads/d9.mp4" type="video/mp4">
+          </video>
+          <video controls muted loop autoplay playsinline>
+            <source src="static/sim2real_res/downloads/d10.mp4" type="video/mp4">
+          </video>
+          <video controls muted loop autoplay playsinline>
+            <source src="static/sim2real_res/downloads/d11.mp4" type="video/mp4">
+          </video>
+          <video controls muted loop autoplay playsinline>
+            <source src="static/sim2real_res/downloads/d12.mp4" type="video/mp4">
+          </video>
+          <video controls muted loop autoplay playsinline>
+            <source src="static/sim2real_res/downloads/d13.mp4" type="video/mp4">
+          </video>
+          <video controls muted loop autoplay playsinline>
+            <source src="static/sim2real_res/downloads/d14.mp4" type="video/mp4">
+          </video>
+          <video controls muted loop autoplay playsinline>
+            <source src="static/sim2real_res/downloads/d15.mp4" type="video/mp4">
+          </video>
+          <video controls muted loop autoplay playsinline>
+            <source src="static/sim2real_res/downloads/d21.mp4" type="video/mp4">
+          </video>
+        </div>
 
-        <br />
-
-        <!-- quantitative results start here -->
-        <table>
-          <tr>
-            <th rowspan="2">Method</th>
-            <th rowspan="2">Setting</th>
-            <th colspan="3">PartDrag-4D</th>
-            <th colspan="3">Objaverse-Animation-HQ</th>
-            <th rowspan="2">Time (↓)</th>
-          </tr>
-          <tr>
-            <td>PSNR ↑</td>
-            <td>SSIM ↑</td>
-            <td>LPIPS ↓</td>
-            <td>PSNR ↑</td>
-            <td>SSIM ↑</td>
-            <td>LPIPS ↓</td>
-          </tr>
-          <tr>
-            <td>DiffEditor</td>
-            <td>NVS-First</td>
-            <td>22.52</td>
-            <td>0.8974</td>
-            <td>0.1138</td>
-            <td>19.24</td>
-            <td>0.8988</td>
-            <td>0.0902</td>
-            <td>33.6s / 151.2s</td>
-          </tr>
-          <tr>
-            <td>DiffEditor</td>
-            <td>Drag-First</td>
-            <td>22.34</td>
-            <td>0.9174</td>
-            <td>0.0918</td>
-            <td><u>19.46</u></td>
-            <td><u>0.9079</u></td>
-            <td><u>0.0842</u></td>
-            <td>11.5s / 128.8s</td>
-          </tr>
-          <tr>
-            <td>DragAPart</td>
-            <td>NVS-First</td>
-            <td>24.27</td>
-            <td>0.9343</td>
-            <td>0.0690</td>
-            <td>19.38</td>
-            <td>0.8915</td>
-            <td>0.0873</td>
-            <td>21.4s / 139.7s</td>
-          </tr>
-          <tr>
-            <td>DragAPart</td>
-            <td>Drag-First</td>
-            <td><u>24.91</u></td>
-            <td>0.9454</td>
-            <td>0.0567</td>
-            <td>19.44</td>
-            <td>0.9004</td>
-            <td>0.0885</td>
-            <td><u>8.5s / 119.4s</u></td>
-          </tr>
-          <tr>
-            <td>Puppet-Master</td>
-            <td>NVS-First</td>
-            <td>24.20</td>
-            <td>0.9447</td>
-            <td>0.0579</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>64.9s / 187.5s</td>
-          </tr>
-          <tr>
-            <td>Puppet-Master</td>
-            <td>Drag-First</td>
-            <td>24.42</td>
-            <td><u>0.9475</u></td>
-            <td><u>0.0528</u></td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>245.8s / 361.5s</td>
-          </tr>
-          <tr>
-            <td><strong>PartRM (Ours)</strong></td>
-            <td>-</td>
-            <td><strong>28.15</strong></td>
-            <td><strong>0.9531</strong></td>
-            <td><strong>0.0356</strong></td>
-            <td><strong>21.38</strong></td>
-            <td><strong>0.9209</strong></td>
-            <td><strong>0.0758</strong></td>
-            <td><strong>4.2s / -</strong></td>
-          </tr>
-          <caption>Quantitative Comparison of Different Methods</caption>
-        </table>
+        <!-- results teaser + quantitative comparison removed as requested -->
 
       </div>
     </div>
@@ -497,15 +399,206 @@
     </div>
 </section> -->
 
-  <!--BibTex citation -->
+  <!-- BibTeX section was moved to just before the footer per user request -->
+
+  <!-- Quantitative table converted from LaTeX (inserted by assistant) -->
+  <section class="section" id="quant-table">
+    <div class="container is-max-desktop content">
+      <h2 class="title">Quantitative comparison (DexYCB)</h2>
+      <div style="overflow-x:auto;">
+        <table style="margin: 0 auto; border-collapse: collapse; width: 90%; max-width: 1100px;">
+          <thead>
+            <tr>
+              <th style="padding:8px 12px; border:1px solid #ddd; background:#eee;">Method</th>
+              <th style="padding:8px 12px; border:1px solid #ddd; background:cyan;">FVD (↓)</th>
+              <th style="padding:8px 12px; border:1px solid #ddd; background:cyan;">MF (↑)</th>
+              <th style="padding:8px 12px; border:1px solid #ddd; background:lightgreen;">LPIPS (↓)</th>
+              <th style="padding:8px 12px; border:1px solid #ddd; background:lightgreen;">SSIM (↑)</th>
+              <th style="padding:8px 12px; border:1px solid #ddd; background:lightgreen;">PSNR (↑)</th>
+              <th style="padding:8px 12px; border:1px solid #ddd; background:yellow;">MPJPE (↓)</th>
+              <th style="padding:8px 12px; border:1px solid #ddd; background:pink;">Resolution</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">CosHand</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">58.51</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.591</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.139</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.767</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">23.20</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">30.05</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">256 x 256</td>
+            </tr>
+            <tr>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">InterDyn</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">38.83</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.680</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.119</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.848</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">24.86</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">-</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">256 x 384</td>
+            </tr>
+            <tr>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">ManiVideo</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">-</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">-</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.079</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;"><u>0.913</u></td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;"><u>30.10</u></td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">57.30</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">-</td>
+            </tr>
+            <tr style="border-top:2px solid #bbb;">
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center; font-weight:bold;">Ours w/ all</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center; font-weight:bold;">29.13</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;"><u>0.712</u></td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center; font-weight:bold;">0.069</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center; font-weight:bold;">0.914</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center; font-weight:bold;">30.17</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center; font-weight:bold;">19.37</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center; font-weight:bold;">480 x 720</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="max-width:90%; margin:0.75em auto;"> Quantitative comparison on DexYCB dataset. Our method is evaluated against CosHand, InterDyn, and ManiVideo. Results for InterDyn and ManiVideo are taken from their original papers. For fair comparison, CosHand was fine-tuned on the s0-split training set identical to ours. Our approach achieves state-of-the-art performance across all metrics (FVD, LPIPS, MF, MPJPE) while generating high-resolution 480×720 videos.</p>
+    </div>
+  </section>
+
+  <!-- Quantitative table for OAKINK2 converted from LaTeX -->
+  <section class="section" id="quant-table-oakink2">
+    <div class="container is-max-desktop content">
+      <h2 class="title">Quantitative comparison (OAKINK2)</h2>
+      <div style="overflow-x:auto;">
+        <table style="margin: 0 auto; border-collapse: collapse; width: 75%; max-width: 1000px;">
+          <thead>
+            <tr>
+              <th style="padding:8px 12px; border:1px solid #ddd; background:#eee;">Method</th>
+              <th style="padding:8px 12px; border:1px solid #ddd; background:cyan;">FVD (↓)</th>
+              <th style="padding:8px 12px; border:1px solid #ddd; background:cyan;">MF (↑)</th>
+              <th style="padding:8px 12px; border:1px solid #ddd; background:lightgreen;">LPIPS (↓)</th>
+              <th style="padding:8px 12px; border:1px solid #ddd; background:lightgreen;">SSIM (↑)</th>
+              <th style="padding:8px 12px; border:1px solid #ddd; background:lightgreen;">PSNR (↑)</th>
+              <th style="padding:8px 12px; border:1px solid #ddd; background:yellow;">MPJPE (↓)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">CosHand</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">68.76</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.651</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.156</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.765</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">23.84</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">14.49</td>
+            </tr>
+            <tr>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">Ours w/ seg</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;"><u>48.97</u></td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;"><u>0.708</u></td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;"><u>0.084</u></td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.831</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">25.76</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">9.61</td>
+            </tr>
+            <tr>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">Ours w/ depth</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">50.85</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.702</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.086</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;"><u>0.845</u></td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;"><u>26.98</u></td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">10.07</td>
+            </tr>
+            <tr>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">Ours w/ hand</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">52.41</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.671</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.113</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.838</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">25.66</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;"><u>8.01</u></td>
+            </tr>
+            <tr style="border-top:2px solid #bbb;">
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center; font-weight:bold;">Ours w/ all</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center; font-weight:bold;">46.31</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center; font-weight:bold;">0.777</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center; font-weight:bold;">0.081</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center; font-weight:bold;">0.851</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center; font-weight:bold;">28.36</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center; font-weight:bold;">7.01</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="max-width:90%; margin:0.75em auto;"> <strong>Caption:</strong> Quantitative results on the OAKINK2 dataset. Comparison of our method with CosHand. For a fair evaluation, both models are trained on the same dataset. Our approach achieves state-of-the-art performance, outperforming CosHand across all evaluated metrics.</p>
+    </div>
+  </section>
+
+  <!-- Additional videos appended near the end (before BibTeX) -->
+  <section class="section" id="end-videos">
+    <div class="container is-max-desktop content">
+      <h2 class="title">More Videos</h2>
+      <div class="video-grid" style="grid-template-columns: repeat(4, 1fr);">
+        <!-- oad/5..8 -->
+        <video controls muted loop autoplay playsinline>
+          <source src="static/sim2real_res/oad/5.mp4" type="video/mp4">
+        </video>
+        <video controls muted loop autoplay playsinline>
+          <source src="static/sim2real_res/oad/6.mp4" type="video/mp4">
+        </video>
+        <video controls muted loop autoplay playsinline>
+          <source src="static/sim2real_res/oad/7.mp4" type="video/mp4">
+        </video>
+        <video controls muted loop autoplay playsinline>
+          <source src="static/sim2real_res/oad/8.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="video-grid" style="grid-template-columns: repeat(4, 1fr); margin-top:12px;">
+        <!-- oad/9..10 + d17..d18 -->
+        <video controls muted loop autoplay playsinline>
+          <source src="static/sim2real_res/oad/9.mp4" type="video/mp4">
+        </video>
+
+        <video controls muted loop autoplay playsinline>
+          <source src="static/sim2real_res/downloads/d17.mp4" type="video/mp4">
+        </video>
+        <video controls muted loop autoplay playsinline>
+          <source src="static/sim2real_res/downloads/d18.mp4" type="video/mp4">
+        </video>
+                <video controls muted loop autoplay playsinline>
+          <source src="static/sim2real_res/oad/10.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="video-grid" style="grid-template-columns: repeat(4, 1fr); margin-top:12px;">
+        <!-- d19..d22 -->
+        <video controls muted loop autoplay playsinline>
+          <source src="static/sim2real_res/downloads/d19.mp4" type="video/mp4">
+        </video>
+        <video controls muted loop autoplay playsinline>
+          <source src="static/sim2real_res/downloads/d20.mp4" type="video/mp4">
+        </video>
+        <video controls muted loop autoplay playsinline>
+          <source src="static/sim2real_res/downloads/d21.mp4" type="video/mp4">
+        </video>
+        <video controls muted loop autoplay playsinline>
+          <source src="static/sim2real_res/downloads/d22.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <!--BibTex citation (moved here) -->
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
       If you find our work useful in your research, please consider citing:
       <div style="margin: 0.5em;"></div>
-      <pre><code>@article{gao2025partrm,
-  title={PartRM: Modeling Part-Level Dynamics with Large 4D Reconstruction Model},
-  author={Mingju Gao, Yike Pan, Huan-ang Gao, Zongzheng Zhang, Wenyi Li, Hao Dong, Hao Tang, Li Yi, Hao Zhao},
+      <pre><code>@article{gao2025sim2realhoi,
+  title={Sim2Real-HOI: Sim-to-Real HOI Video Generation via Decoupled Motion-Appearance Diffusion},
+  author={},
   journal={},
   year={2025}
 }</code></pre>
