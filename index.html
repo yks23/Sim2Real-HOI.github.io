@@ -11,6 +11,10 @@
   <meta name="keywords"
     content="PartRM, 3D reconstruction, Drag" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="static/css/bulma.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" />
+  <link rel="stylesheet" href="static/css/index.css" />
 <style>
   /* Lightbox样式 */
   #lightbox img {
@@ -25,15 +29,26 @@
   .container,
   .columns,
   .column,
-  .content,
   .publication-links,
   .gallery,
   h1,
   h2,
   h3,
-  p,
   table caption {
     text-align: center;
+  }
+
+  /* Abstract 段落保持两端对齐 */
+  .content.has-text-justified,
+  .content.has-text-justified p {
+    text-align: justify !important;
+  }
+
+  /* 减少 Results 部分的间距 */
+  #quant-table,
+  #quant-table-oakink2 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
 
   /* gallery 行与图片居中 */
@@ -66,13 +81,13 @@
     padding: 6px 8px;
   }
 
-  /* 4x4 视频网格样式 */
+  /* 2列视频网格样式 */
   .video-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 16px;
     width: 100%;
-    max-width: 1200px;
+    max-width: 900px;
     margin-left: auto;
     margin-right: auto;
     padding: 12px;
@@ -85,16 +100,31 @@
     background: #000;
   }
 
-  /* 响应式：窄屏时降列数 */
-  @media (max-width: 900px) {
-    .video-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
+  /* 响应式：窄屏时1列 */
   @media (max-width: 480px) {
     .video-grid {
       grid-template-columns: 1fr;
     }
+  }
+
+  /* Publication links: pill buttons with icons wrapping the text */
+  .publication-links .link-block {
+    display: inline-block;
+    margin: 0.25em 0.35em;
+  }
+  .publication-links .button {
+    background: #333;
+    color: #fff;
+    border: none;
+    border-radius: 9999px;
+    padding: 0.65em 1.1em;
+  }
+  .publication-links .button .icon {
+    color: #fff;
+  }
+  .publication-links .button .icon + span,
+  .publication-links .button span + .icon {
+    margin-left: 0.55em;
   }
 
 </style>
@@ -114,45 +144,57 @@
             <div class="is-size-5 publication-authors">
               <!-- Paper authors -->
               <span class="author-block">
-                Mingju Gao<sup>*1</sup>,</span>
+                Mingju Gao<sup>1</sup>,</span>
               <span class="author-block">
                 <!-- <a href="SECOND AUTHOR PERSONAL LINK" target="_blank" -->
-                Yike Pan<sup>*1,2</sup>,</span>
+                Kaisen Yang<sup>1</sup>,</span>
               <span class="author-block">
                 <!-- <a href="SECOND AUTHOR PERSONAL LINK" target="_blank" -->
-                <a href="https://c7w.tech/about/" target="_blank">Huan-ang Gao*</a><sup>1,5</sup>,
+                <a href="http://c7w.tech/" target="_blank">Huan-ang Gao</a><sup>1</sup>,
               </span>
               <span class="author-block">
                 <!-- <a href="SECOND AUTHOR PERSONAL LINK" target="_blank" -->
-                Zongzheng Zhang<sup>1</sup>,</span>
+                <a href="https://arlo0o.github.io/libohan.github.io/" target="_blank">Bohan Li</a><sup>2</sup>,</span>
               <span class="author-block">
                 <!-- <a href="SECOND AUTHOR PERSONAL LINK" target="_blank" -->
-                Wenyi Li<sup>1</sup>,</span><br />
+                Ao Ding<sup>1</sup>,</span><br/>
               <span class="author-block">
-                <!-- <a href="https://ha0tang.github.io/" target="_blank">Hao Tang</a><sup>4</sup>,</span> -->
-                <a href="https://zsdonghao.github.io/", target="_blank">Hao Dong</a><sup>3</sup>,</span>
+                <!-- <a href="SECOND AUTHOR PERSONAL LINK" target="_blank" -->
+                Wenyi Li<sup>1</sup>,</span>
+              <span class="author-block">
+                <!-- <a href="SECOND AUTHOR PERSONAL LINK" target="_blank" -->
+                Yangcheng Yu<sup>1</sup>,</span>
+              <span class="author-block">
+                <!-- <a href="SECOND AUTHOR PERSONAL LINK" target="_blank" -->
+                Shaocong Xu<sup>4</sup>,</span>
+              <span class="author-block">
+                <!-- <a href="SECOND AUTHOR PERSONAL LINK" target="_blank" -->
+                Yike Niu<sup>1</sup>,</span>
+              <span class="author-block">
+                <!-- <a href="SECOND AUTHOR PERSONAL LINK" target="_blank" -->
+                Haohan Chi<sup>1</sup>,</span><br/>
               <span class="author-block">
                 <!-- <a href="https://ha0tang.github.io/" target="_blank">Hao Tang</a><sup>4</sup>,</span> -->
                 <a href="https://ha0tang.github.io/", target="_blank">Hao Tang</a><sup>3</sup>,</span>
               <span class="author-block">
                 <!-- <a href="https://ha0tang.github.io/" target="_blank">Hao Tang</a><sup>4</sup>,</span> -->
-                <a href="https://ericyi.github.io/", target="_blank">Li Yi</a><sup>4</sup>,</span>
+                <a, target="_blank">Yu Zhang</a><sup>2</sup>,</span>
               <span class="author-block">
-                <a href="https://sites.google.com/view/fromandto" target="_blank">Hao Zhao</a><sup>&dagger;1,5</sup>
+                <!-- <a href="https://ha0tang.github.io/" target="_blank">Hao Tang</a><sup>4</sup>,</span> -->
+                <a href="https://ericyi.github.io/", target="_blank">Li Yi</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="https://sites.google.com/view/fromandto" target="_blank">Hao Zhao</a><sup>&dagger;1,4</sup>
               </span>
             </div>
             <!-- a margin of 0.5em -->
             <div style="margin: 0.5em;"></div>
             <div class="is-size-5 publication-authors">
               <span class="author-block is-size-6">
-                <sup>1</sup> Institute for AI Industry Research (AIR), Tsinghua University &nbsp;&nbsp;&nbsp;
+                <sup>1</sup> Tsinghua University &nbsp;&nbsp;&nbsp;
+                <sup>2</sup> Shanghai Jiao Tong University &nbsp;&nbsp;&nbsp;
                 <br>
-                <sup>2</sup> Department of Electrical Engineering and Computer Science, University of Michigan &nbsp;&nbsp;&nbsp;
-                <br>
-                <sup>3</sup> School of Computer Science, Peking University. &nbsp;&nbsp;&nbsp;
-                <sup>4</sup> Institute for Interdisciplinary Information Sciences (IIIS), Tsinghua University &nbsp;&nbsp;&nbsp;
-                <br>
-                <sup>5</sup> Beijing Academy of Artificial Intelligence(BAAl) 
+                <sup>3</sup> Peking University. &nbsp;&nbsp;&nbsp;
+                <sup>4</sup> Beijing Academy of Artificial Intelligence(BAAI) 
                 <!-- <div style="margin: 0.1em;"></div> -->
                 <span class="eql-cntrb"><small><br /><sup>*</sup>Indicates Equal Contribution</small></span>
                 <!-- a span of 5em-->
@@ -164,29 +206,31 @@
               <div class="publication-links">
                 <!-- Arxiv PDF link -->
                 <span class="link-block">
-                  <a href="https://arxiv.org/pdf/2503.19913" target="_blank"
+                  <a href="" target="_blank"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fas fa-file-pdf"></i>
                     </span>
                     <span>Paper</span>
+
                   </a>
                 </span>
 
                 <!-- Github link -->
                 <span class="link-block">
-                  <a href="https://github.com/GasaiYU/PartRM" target="_blank"
+                  <a href="" target="_blank"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fab fa-github"></i>
                     </span>
-                    <span>Code [CVPR 2025]</span>
+                    <span>Code</span>
+
                   </a>
                 </span>
 
                 <!-- ArXiv abstract Link -->
                 <span class="link-block">
-                  <a href="https://arxiv.org/abs/2503.19913" target="_blank"
+                  <a href="" target="_blank"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="ai ai-arxiv"></i>
@@ -197,12 +241,13 @@
 
                 <!-- Dataset and model Link -->
                 <span class="link-block">
-                  <a href="https://huggingface.co/GasaiYU/PartRM/tree/main" target="_blank"
+                  <a href="" target="_blank"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fas fa-cubes"></i>
                     </span>
                     <span>Dataset & Models</span>
+
                   </a>
                 </span>
               </div>
@@ -213,11 +258,11 @@
     </div>
   </section>
 
-  <!-- Top: 4 videos side-by-side (replaces previous teaser). Using local file:// paths as requested -->
+  <!-- Top: Teaser videos -->
   <section class="hero teaser">
     <div class="container is-max-desktop">
       <div class="hero-body">
-        <div class="video-grid" style="grid-template-columns: repeat(4, 1fr); max-width:1200px;">
+        <div class="video-grid">
           <video controls muted loop autoplay playsinline>
             <source src="static/sim2real_res/oad/1.mp4" type="video/mp4">
             Your browser does not support the video tag.
@@ -263,15 +308,16 @@ Extensive experiments on DexYCB and OAKINK2 demonstrate that Sim2Real-HOI enhanc
     <div class="hero-body">
       <div class="container">
         <!-- Paper video. -->
-  <div class="columns is-centered">
-  <h2 class="title is-3 has-text-centered">Method</h2>
-
-      <img src="static/sim2real_res/new_main.png" width="90%" />
+        <h2 class="title is-3 has-text-centered">Method</h2>
+        <div class="columns is-centered">
+          <img src="static/sim2real_res/new_main.png" width="70%" />
         </div>
-        <h2 class="has-text-centered is-size-6" width="55%">
-          <b>Overview of Sim2Real-HOI two-stage generation pipeline.</b> (1) <b>Appearance Generation:</b> A controllable image diffusion model synthesizes the first frame from multi-modal conditions (depth, semantic masks, keypoints). (2) <b>Motion Generation:</b> A pre-trained hand pose generator produces intermediate poses, which are then rendered into a full video sequence by a video diffusion model, conditioned on the same controls as appearance generation.
-        </h2>
-        <br />
+        <div style="max-width: 70%; margin: 0 auto;">
+          <p class="has-text-centered is-size-6">
+            <b>Overview of Sim2Real-HOI two-stage generation pipeline.</b> (1) <b>Appearance Generation:</b> A controllable image diffusion model synthesizes the first frame from multi-modal conditions (depth, semantic masks, keypoints). (2) <b>Motion Generation:</b> A pre-trained hand pose generator produces intermediate poses, which are then rendered into a full video sequence by a video diffusion model, conditioned on the same controls as appearance generation.
+          </p>
+        </div>
+        <br/>
         <!-- <div class="columns is-centered">
           <img src="static/images/ade-teaser.jpg" width="55%" />
         </div>
@@ -293,7 +339,7 @@ Extensive experiments on DexYCB and OAKINK2 demonstrate that Sim2Real-HOI enhanc
     <div class="hero-body">
       <div class="container">
         <!-- Paper video. -->
-  <h2 class="title is-3 has-text-centered">Results</h2>
+  <h2 class="title is-3 has-text-centered" style="margin-bottom: 1rem;">Results</h2>
 
   <section class="section" id="quant-table">
     <div class="container is-max-desktop content">
@@ -356,7 +402,7 @@ Extensive experiments on DexYCB and OAKINK2 demonstrate that Sim2Real-HOI enhanc
           </tbody>
         </table>
       </div>
-      <p style="max-width:90%; margin:0.75em auto;"> Quantitative comparison on DexYCB dataset. Our method is evaluated against CosHand, InterDyn, and ManiVideo. Results for InterDyn and ManiVideo are taken from their original papers. For fair comparison, CosHand was fine-tuned on the s0-split training set identical to ours. Our approach achieves state-of-the-art performance across all metrics (FVD, LPIPS, MF, MPJPE) while generating high-resolution 480×720 videos.</p>
+      <p style="max-width:90%; margin:0.75em auto;"> <strong> Quantitative comparison on DexYCB dataset.</strong> Our method is evaluated against CosHand, InterDyn, and ManiVideo. Results for InterDyn and ManiVideo are taken from their original papers. For fair comparison, CosHand was fine-tuned on the s0-split training set identical to ours. Our approach achieves state-of-the-art performance across all metrics (FVD, LPIPS, MF, MPJPE) while generating high-resolution 480×720 videos.</p>
     </div>
   </section>
 
@@ -426,17 +472,19 @@ Extensive experiments on DexYCB and OAKINK2 demonstrate that Sim2Real-HOI enhanc
           </tbody>
         </table>
       </div>
-      <p style="max-width:90%; margin:0.75em auto;"> <strong>Caption:</strong> Quantitative results on the OAKINK2 dataset. Comparison of our method with CosHand. For a fair evaluation, both models are trained on the same dataset. Our approach achieves state-of-the-art performance, outperforming CosHand across all evaluated metrics.</p>
+      <p style="max-width:90%; margin:0.75em auto;"> <strong>Quantitative results on the OAKINK2 dataset.</strong> Comparison of our method with CosHand. For a fair evaluation, both models are trained on the same dataset. Our approach achieves state-of-the-art performance, outperforming CosHand across all evaluated metrics.</p>
     </div>
   </section>
 
-  <h3 class="title is-3 has-text-centered">Downstream Validation</h3>
-
-  <img src="static/sim2real_res/downstream.png" width="70%" />
+  <h3 class="title is-4 has-text-centered">Downstream Validation</h3>
+  <div class="columns is-centered">
+    <img src="static/sim2real_res/downstream.png" width="70%" />
   </div>
-  <h3 class="has-text-centered is-size-6" width="55%">
-    Data augmentation analysis with varying ratios of real data. We augment different portions of the DexYCB training set (25%, 50%, 75%, 100%) with our generated synthetic data. The baseline (dashed line) indicates performance when training solely on 100% of the real DexYCB data without synthetic augmentation.
-  </h3>
+  <div style="max-width: 70%; margin: 0 auto;">
+    <p class="has-text-centered is-size-6">
+      <strong> Data augmentation analysis with varying ratios of real data.</strong> We augment different portions of the DexYCB training set (25%, 50%, 75%, 100%) with our generated synthetic data. The baseline (dashed line) indicates performance when training solely on 100% of the real DexYCB data without synthetic augmentation.
+    </p>
+  </div>
   <br />
         
 
@@ -507,6 +555,53 @@ Extensive experiments on DexYCB and OAKINK2 demonstrate that Sim2Real-HOI enhanc
           </video>
         </div>
 
+        <!-- More videos -->
+        <div class="video-grid" style="margin-top:12px;">
+          <!-- oad/5..8 -->
+          <video controls muted loop autoplay playsinline>
+            <source src="static/sim2real_res/oad/5.mp4" type="video/mp4">
+          </video>
+          <video controls muted loop autoplay playsinline>
+            <source src="static/sim2real_res/oad/6.mp4" type="video/mp4">
+          </video>
+          <video controls muted loop autoplay playsinline>
+            <source src="static/sim2real_res/oad/7.mp4" type="video/mp4">
+          </video>
+          <video controls muted loop autoplay playsinline>
+            <source src="static/sim2real_res/oad/8.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-grid" style="margin-top:12px;">
+          <!-- oad/9..10 + d17..d18 -->
+          <video controls muted loop autoplay playsinline>
+            <source src="static/sim2real_res/oad/9.mp4" type="video/mp4">
+          </video>
+          <video controls muted loop autoplay playsinline>
+            <source src="static/sim2real_res/downloads/d17.mp4" type="video/mp4">
+          </video>
+          <video controls muted loop autoplay playsinline>
+            <source src="static/sim2real_res/downloads/d18.mp4" type="video/mp4">
+          </video>
+          <video controls muted loop autoplay playsinline>
+            <source src="static/sim2real_res/oad/10.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-grid" style="margin-top:12px;">
+          <!-- d19..d22 -->
+          <video controls muted loop autoplay playsinline>
+            <source src="static/sim2real_res/downloads/d19.mp4" type="video/mp4">
+          </video>
+          <video controls muted loop autoplay playsinline>
+            <source src="static/sim2real_res/downloads/d20.mp4" type="video/mp4">
+          </video>
+          <video controls muted loop autoplay playsinline>
+            <source src="static/sim2real_res/downloads/d21.mp4" type="video/mp4">
+          </video>
+          <video controls muted loop autoplay playsinline>
+            <source src="static/sim2real_res/downloads/d22.mp4" type="video/mp4">
+          </video>
+        </div>
+
         <!-- results teaser + quantitative comparison removed as requested -->
 
       </div>
@@ -559,59 +654,6 @@ Extensive experiments on DexYCB and OAKINK2 demonstrate that Sim2Real-HOI enhanc
     to achieve state-of-the-art results on ADE20K. 
   </h2> -->
 
-
-  <!-- Additional videos appended near the end (before BibTeX) -->
-  <section class="section" id="end-videos">
-    <div class="container is-max-desktop content">
-      <h2 class="title">More Videos</h2>
-      <div class="video-grid" style="grid-template-columns: repeat(4, 1fr);">
-        <!-- oad/5..8 -->
-        <video controls muted loop autoplay playsinline>
-          <source src="static/sim2real_res/oad/5.mp4" type="video/mp4">
-        </video>
-        <video controls muted loop autoplay playsinline>
-          <source src="static/sim2real_res/oad/6.mp4" type="video/mp4">
-        </video>
-        <video controls muted loop autoplay playsinline>
-          <source src="static/sim2real_res/oad/7.mp4" type="video/mp4">
-        </video>
-        <video controls muted loop autoplay playsinline>
-          <source src="static/sim2real_res/oad/8.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="video-grid" style="grid-template-columns: repeat(4, 1fr); margin-top:12px;">
-        <!-- oad/9..10 + d17..d18 -->
-        <video controls muted loop autoplay playsinline>
-          <source src="static/sim2real_res/oad/9.mp4" type="video/mp4">
-        </video>
-
-        <video controls muted loop autoplay playsinline>
-          <source src="static/sim2real_res/downloads/d17.mp4" type="video/mp4">
-        </video>
-        <video controls muted loop autoplay playsinline>
-          <source src="static/sim2real_res/downloads/d18.mp4" type="video/mp4">
-        </video>
-                <video controls muted loop autoplay playsinline>
-          <source src="static/sim2real_res/oad/10.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="video-grid" style="grid-template-columns: repeat(4, 1fr); margin-top:12px;">
-        <!-- d19..d22 -->
-        <video controls muted loop autoplay playsinline>
-          <source src="static/sim2real_res/downloads/d19.mp4" type="video/mp4">
-        </video>
-        <video controls muted loop autoplay playsinline>
-          <source src="static/sim2real_res/downloads/d20.mp4" type="video/mp4">
-        </video>
-        <video controls muted loop autoplay playsinline>
-          <source src="static/sim2real_res/downloads/d21.mp4" type="video/mp4">
-        </video>
-        <video controls muted loop autoplay playsinline>
-          <source src="static/sim2real_res/downloads/d22.mp4" type="video/mp4">
-        </video>
-      </div>
-    </div>
-  </section>
 
   <!--BibTex citation (moved here) -->
   <section class="section" id="BibTeX">
