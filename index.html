@@ -266,7 +266,7 @@ Extensive experiments on DexYCB and OAKINK2 demonstrate that Sim2Real-HOI enhanc
   <div class="columns is-centered">
   <h2 class="title is-3 has-text-centered">Method</h2>
 
-          <img src="static/sim2real_res/new_main.png" width="90%" />
+      <img src="static/sim2real_res/new_main.png" width="90%" />
         </div>
         <h2 class="has-text-centered is-size-6" width="55%">
           <b>Overview of Sim2Real-HOI two-stage generation pipeline.</b> (1) <b>Appearance Generation:</b> A controllable image diffusion model synthesizes the first frame from multi-modal conditions (depth, semantic masks, keypoints). (2) <b>Motion Generation:</b> A pre-trained hand pose generator produces intermediate poses, which are then rendered into a full video sequence by a video diffusion model, conditioned on the same controls as appearance generation.
@@ -294,22 +294,166 @@ Extensive experiments on DexYCB and OAKINK2 demonstrate that Sim2Real-HOI enhanc
       <div class="container">
         <!-- Paper video. -->
   <h2 class="title is-3 has-text-centered">Results</h2>
+
+  <section class="section" id="quant-table">
+    <div class="container is-max-desktop content">
+      <h3 class="title">Quantitative comparison (DexYCB)</h3>
+      <div style="overflow-x:auto;">
+        <table style="margin: 0 auto; border-collapse: collapse; width: 90%; max-width: 1100px;">
+          <thead>
+            <tr>
+              <th style="padding:8px 12px; border:1px solid #ddd; background:#eee;">Method</th>
+              <th style="padding:8px 12px; border:1px solid #ddd; background:cyan;">FVD (↓)</th>
+              <th style="padding:8px 12px; border:1px solid #ddd; background:cyan;">MF (↑)</th>
+              <th style="padding:8px 12px; border:1px solid #ddd; background:lightgreen;">LPIPS (↓)</th>
+              <th style="padding:8px 12px; border:1px solid #ddd; background:lightgreen;">SSIM (↑)</th>
+              <th style="padding:8px 12px; border:1px solid #ddd; background:lightgreen;">PSNR (↑)</th>
+              <th style="padding:8px 12px; border:1px solid #ddd; background:yellow;">MPJPE (↓)</th>
+              <th style="padding:8px 12px; border:1px solid #ddd; background:pink;">Resolution</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">CosHand</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">58.51</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.591</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.139</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.767</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">23.20</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">30.05</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">256 x 256</td>
+            </tr>
+            <tr>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">InterDyn</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">38.83</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.680</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.119</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.848</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">24.86</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">-</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">256 x 384</td>
+            </tr>
+            <tr>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">ManiVideo</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">-</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">-</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.079</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;"><u>0.913</u></td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;"><u>30.10</u></td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">57.30</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">-</td>
+            </tr>
+            <tr style="border-top:2px solid #bbb;">
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center; font-weight:bold;">Ours w/ all</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center; font-weight:bold;">29.13</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;"><u>0.712</u></td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center; font-weight:bold;">0.069</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center; font-weight:bold;">0.914</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center; font-weight:bold;">30.17</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center; font-weight:bold;">19.37</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center; font-weight:bold;">480 x 720</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="max-width:90%; margin:0.75em auto;"> Quantitative comparison on DexYCB dataset. Our method is evaluated against CosHand, InterDyn, and ManiVideo. Results for InterDyn and ManiVideo are taken from their original papers. For fair comparison, CosHand was fine-tuned on the s0-split training set identical to ours. Our approach achieves state-of-the-art performance across all metrics (FVD, LPIPS, MF, MPJPE) while generating high-resolution 480×720 videos.</p>
+    </div>
+  </section>
+
+  <!-- Quantitative table for OAKINK2 converted from LaTeX -->
+  <section class="section" id="quant-table-oakink2">
+    <div class="container is-max-desktop content">
+      <h3 class="title">Quantitative comparison (OAKINK2)</h3>
+      <div style="overflow-x:auto;">
+        <table style="margin: 0 auto; border-collapse: collapse; width: 75%; max-width: 1000px;">
+          <thead>
+            <tr>
+              <th style="padding:8px 12px; border:1px solid #ddd; background:#eee;">Method</th>
+              <th style="padding:8px 12px; border:1px solid #ddd; background:cyan;">FVD (↓)</th>
+              <th style="padding:8px 12px; border:1px solid #ddd; background:cyan;">MF (↑)</th>
+              <th style="padding:8px 12px; border:1px solid #ddd; background:lightgreen;">LPIPS (↓)</th>
+              <th style="padding:8px 12px; border:1px solid #ddd; background:lightgreen;">SSIM (↑)</th>
+              <th style="padding:8px 12px; border:1px solid #ddd; background:lightgreen;">PSNR (↑)</th>
+              <th style="padding:8px 12px; border:1px solid #ddd; background:yellow;">MPJPE (↓)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">CosHand</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">68.76</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.651</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.156</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.765</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">23.84</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">14.49</td>
+            </tr>
+            <tr>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">Ours w/ seg</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;"><u>48.97</u></td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;"><u>0.708</u></td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;"><u>0.084</u></td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.831</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">25.76</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">9.61</td>
+            </tr>
+            <tr>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">Ours w/ depth</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">50.85</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.702</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.086</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;"><u>0.845</u></td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;"><u>26.98</u></td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">10.07</td>
+            </tr>
+            <tr>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">Ours w/ hand</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">52.41</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.671</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.113</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.838</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">25.66</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;"><u>8.01</u></td>
+            </tr>
+            <tr style="border-top:2px solid #bbb;">
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center; font-weight:bold;">Ours w/ all</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center; font-weight:bold;">46.31</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center; font-weight:bold;">0.777</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center; font-weight:bold;">0.081</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center; font-weight:bold;">0.851</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center; font-weight:bold;">28.36</td>
+              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center; font-weight:bold;">7.01</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="max-width:90%; margin:0.75em auto;"> <strong>Caption:</strong> Quantitative results on the OAKINK2 dataset. Comparison of our method with CosHand. For a fair evaluation, both models are trained on the same dataset. Our approach achieves state-of-the-art performance, outperforming CosHand across all evaluated metrics.</p>
+    </div>
+  </section>
+
+  <h3 class="title is-3 has-text-centered">Downstream Validation</h3>
+
+  <img src="static/sim2real_res/downstream.png" width="70%" />
+  </div>
+  <h3 class="has-text-centered is-size-6" width="55%">
+    Data augmentation analysis with varying ratios of real data. We augment different portions of the DexYCB training set (25%, 50%, 75%, 100%) with our generated synthetic data. The baseline (dashed line) indicates performance when training solely on 100% of the real DexYCB data without synthetic augmentation.
+  </h3>
+  <br />
         
 
-        <div class="gallery">
+        <!-- <div class="gallery">
           <div class="row">
                <img src="static/sim2real_res/head.png" alt="Image 1" onclick="openLightbox(this)" width="50%" height="auto">
           </div>
           <h2 class="has-text-centered is-size-6">
          (a) <b>Overview</b> of proposed Sim2Real-HOI. Given the initial and desired final poses of both the hand and object, along with the object mesh, Sim2Real-HOI generates photo-realistic in-the-wild videos by decoupling motion and appearance through a diffusion-based generative process, thereby closing the sim-to-real gap without paired real-world supervision. (b) <b>Evaluation on video quality and downstream task.</b> Our experiments reveal that Sim2Real-HOI not only generates videos with superior perceptual quality, as evidenced by a lower Fréchet Video Distance (FVD) against baselines, but also that these videos serve as effective synthetic data. Incorporating them into training reduces the error of a downstream hand pose estimator, outperforming the model trained solely on real videos.
         </h2>
-          <!-- <div class="row"> -->
+           <div class="row"> -->
               <!-- <img src="static/partrm_res/images/supp_pm1.jpg" alt="Image 4" onclick="openLightbox(this)" width="50%" height="auto"> -->
-          </div>
-        </div>
+          <!-- </div>
+        </div>  -->
 
         <!-- Generated videos 4x4 grid -->
-        <h2 class="title is-4 has-text-centered" style="margin-top: 1.5em;">Generated Videos</h2>
+        <h3 class="title is-4 has-text-centered" style="margin-top: 1.5em;">Generated Videos</h3>
         <div class="video-grid">
           <!-- d1.mp4 through d16.mp4 -->
           <video controls muted loop autoplay playsinline>
@@ -402,140 +546,19 @@ Extensive experiments on DexYCB and OAKINK2 demonstrate that Sim2Real-HOI enhanc
   <!-- BibTeX section was moved to just before the footer per user request -->
 
   <!-- Quantitative table converted from LaTeX (inserted by assistant) -->
-  <section class="section" id="quant-table">
-    <div class="container is-max-desktop content">
-      <h2 class="title">Quantitative comparison (DexYCB)</h2>
-      <div style="overflow-x:auto;">
-        <table style="margin: 0 auto; border-collapse: collapse; width: 90%; max-width: 1100px;">
-          <thead>
-            <tr>
-              <th style="padding:8px 12px; border:1px solid #ddd; background:#eee;">Method</th>
-              <th style="padding:8px 12px; border:1px solid #ddd; background:cyan;">FVD (↓)</th>
-              <th style="padding:8px 12px; border:1px solid #ddd; background:cyan;">MF (↑)</th>
-              <th style="padding:8px 12px; border:1px solid #ddd; background:lightgreen;">LPIPS (↓)</th>
-              <th style="padding:8px 12px; border:1px solid #ddd; background:lightgreen;">SSIM (↑)</th>
-              <th style="padding:8px 12px; border:1px solid #ddd; background:lightgreen;">PSNR (↑)</th>
-              <th style="padding:8px 12px; border:1px solid #ddd; background:yellow;">MPJPE (↓)</th>
-              <th style="padding:8px 12px; border:1px solid #ddd; background:pink;">Resolution</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">CosHand</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">58.51</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.591</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.139</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.767</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">23.20</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">30.05</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">256 x 256</td>
-            </tr>
-            <tr>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">InterDyn</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">38.83</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.680</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.119</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.848</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">24.86</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">-</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">256 x 384</td>
-            </tr>
-            <tr>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">ManiVideo</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">-</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">-</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.079</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;"><u>0.913</u></td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;"><u>30.10</u></td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">57.30</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">-</td>
-            </tr>
-            <tr style="border-top:2px solid #bbb;">
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center; font-weight:bold;">Ours w/ all</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center; font-weight:bold;">29.13</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;"><u>0.712</u></td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center; font-weight:bold;">0.069</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center; font-weight:bold;">0.914</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center; font-weight:bold;">30.17</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center; font-weight:bold;">19.37</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center; font-weight:bold;">480 x 720</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <p style="max-width:90%; margin:0.75em auto;"> Quantitative comparison on DexYCB dataset. Our method is evaluated against CosHand, InterDyn, and ManiVideo. Results for InterDyn and ManiVideo are taken from their original papers. For fair comparison, CosHand was fine-tuned on the s0-split training set identical to ours. Our approach achieves state-of-the-art performance across all metrics (FVD, LPIPS, MF, MPJPE) while generating high-resolution 480×720 videos.</p>
-    </div>
-  </section>
 
-  <!-- Quantitative table for OAKINK2 converted from LaTeX -->
-  <section class="section" id="quant-table-oakink2">
-    <div class="container is-max-desktop content">
-      <h2 class="title">Quantitative comparison (OAKINK2)</h2>
-      <div style="overflow-x:auto;">
-        <table style="margin: 0 auto; border-collapse: collapse; width: 75%; max-width: 1000px;">
-          <thead>
-            <tr>
-              <th style="padding:8px 12px; border:1px solid #ddd; background:#eee;">Method</th>
-              <th style="padding:8px 12px; border:1px solid #ddd; background:cyan;">FVD (↓)</th>
-              <th style="padding:8px 12px; border:1px solid #ddd; background:cyan;">MF (↑)</th>
-              <th style="padding:8px 12px; border:1px solid #ddd; background:lightgreen;">LPIPS (↓)</th>
-              <th style="padding:8px 12px; border:1px solid #ddd; background:lightgreen;">SSIM (↑)</th>
-              <th style="padding:8px 12px; border:1px solid #ddd; background:lightgreen;">PSNR (↑)</th>
-              <th style="padding:8px 12px; border:1px solid #ddd; background:yellow;">MPJPE (↓)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">CosHand</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">68.76</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.651</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.156</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.765</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">23.84</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">14.49</td>
-            </tr>
-            <tr>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">Ours w/ seg</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;"><u>48.97</u></td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;"><u>0.708</u></td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;"><u>0.084</u></td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.831</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">25.76</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">9.61</td>
-            </tr>
-            <tr>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">Ours w/ depth</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">50.85</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.702</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.086</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;"><u>0.845</u></td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;"><u>26.98</u></td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">10.07</td>
-            </tr>
-            <tr>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">Ours w/ hand</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">52.41</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.671</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.113</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">0.838</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;">25.66</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center;"><u>8.01</u></td>
-            </tr>
-            <tr style="border-top:2px solid #bbb;">
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center; font-weight:bold;">Ours w/ all</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center; font-weight:bold;">46.31</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center; font-weight:bold;">0.777</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center; font-weight:bold;">0.081</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center; font-weight:bold;">0.851</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center; font-weight:bold;">28.36</td>
-              <td style="padding:8px 12px; border:1px solid #ddd; text-align:center; font-weight:bold;">7.01</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <p style="max-width:90%; margin:0.75em auto;"> <strong>Caption:</strong> Quantitative results on the OAKINK2 dataset. Comparison of our method with CosHand. For a fair evaluation, both models are trained on the same dataset. Our approach achieves state-of-the-art performance, outperforming CosHand across all evaluated metrics.</p>
-    </div>
-  </section>
+
+  <!-- <div class="columns is-centered">
+    <img src="static/images/ade-teaser.jpg" width="55%" />
+  </div>
+  <h2 class="has-text-centered is-size-6" width="55%">
+    <b>Explanation of the underlying mechanisms of our proposed noise priors using ADE20K.</b> Introducing the
+    spatial prior aligns the image style with the dataset's aesthetic while removing odd substructures in large
+    semantic areas. Incorporating the class prior can enhance alignment with the provided semantic masks. By
+    jointing spatial and class priors, their beneficial features are combined, allowing our joint prior (SCP-Diff)
+    to achieve state-of-the-art results on ADE20K. 
+  </h2> -->
+
 
   <!-- Additional videos appended near the end (before BibTeX) -->
   <section class="section" id="end-videos">
