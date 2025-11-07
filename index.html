@@ -100,6 +100,32 @@
     background: #000;
   }
 
+  /* 开头的 teaser 视频：2列布局 */
+  .video-grid-teaser {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    width: 100%;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 12px;
+  }
+  .video-grid-teaser video {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 6px;
+    background: #000;
+  }
+
+  /* 响应式：窄屏时1列 */
+  @media (max-width: 768px) {
+    .video-grid-teaser {
+      grid-template-columns: 1fr;
+    }
+  }
+
   /* Publication links: pill buttons with icons wrapping the text */
   .publication-links .link-block {
     display: inline-block;
@@ -259,7 +285,7 @@
   <section class="hero teaser">
     <div class="container is-max-desktop">
       <div class="hero-body">
-        <div class="video-grid">
+        <div class="video-grid-teaser">
           <video controls muted loop autoplay playsinline>
             <source src="static/sim2real_res/oad/1.mp4" type="video/mp4">
             Your browser does not support the video tag.
